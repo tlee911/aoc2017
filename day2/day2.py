@@ -1,13 +1,11 @@
 import itertools
 
 INPUT_FILE = 'input.tsv'
-
 test_input = '''
 5 1 9 5
 7 5 3
 2 4 6 8
 '''
-
 test_mod_input = '''
 5 9 2 8
 9 4 7 3
@@ -29,19 +27,17 @@ def get_input_from_tsv_file(path, sep='\t'):
     return input_to_int(input_str)
 
 def get_checksum(input):
-    #print(input)
     return sum([max(row) - min(row) for row in input])
 
 def get_row_mod(row):
-    combos = itertools.combinations(row, 2)
-    for t in combos:
-        mod = max(t) % min(t)
-        if mod == 0:
+    for t in itertools.combinations(row, 2):
+        if max(t)%min(t) == 0:
             return int(max(t)/min(t))
     return 0
 
 def get_mod_checksum(input):
     return sum([get_row_mod(row) for row in input])
+
 
 assert get_checksum(get_test_input(test_input)) == 18
 print(get_checksum(get_input_from_tsv_file(INPUT_FILE)))
