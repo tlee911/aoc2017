@@ -23,9 +23,9 @@ class Taxi:
         # 2 wrongs don't make a right, but 3 lefts do
         # More seriously, can't go backwards with an iterator
         # Turns out this is never used in a counter-clockwise spiral...
-        self.right()
-        self.right()
-        self.right()
+        self.left()
+        self.left()
+        self.left()
 
     def step(self):
         new_position = tuple([self.facing[i] + self.position[i] for i in range(len(self.position))])
