@@ -1,6 +1,3 @@
-import itertools
-import sys
-
 INPUT_PATH = 'input.txt'
 
 def get_words(password):
