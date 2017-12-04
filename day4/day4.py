@@ -12,18 +12,10 @@ def check_duplicates(password):
     return max(counts) <= 1
 
 def check_anagrams(password):
-    if not check_duplicates(password):
-        # duplicate word is an anagram
-        return False
-    else:
-        words = get_words(password)
-        for word in words:
-            anagrams = [''.join(p) for p in itertools.permutations(word)]
-            for a in anagrams:
-                if a in words and a != word:
-                    # don't count the current word!
-                    return False
-    return True
+    words = get_words(password)
+    sorted_words = [str(sorted(list(word))) for word in words]
+    counts = [sorted_words.count(word) for word in sorted_words]
+    return max(counts) <= 1
 
 def check_passwords(input, check_function):
     return [check_function(password) for password in input].count(True)
