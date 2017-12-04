@@ -10,7 +10,7 @@ def check_duplicates(password):
 
 def check_anagrams(password):
     words = get_words(password)
-    sorted_words = [str(sorted(list(word))) for word in words]
+    sorted_words = [''.join(sorted(list(word))) for word in words]
     counts = [sorted_words.count(word) for word in sorted_words]
     return max(counts) <= 1
 
