@@ -5,11 +5,11 @@ TEST_INPUT = [0,3,0,1,-3]
 def input_to_int(input):
     return [int(num) for num in input]
 
-def run(maze, offset_limit=None):
+def run(maze, offset_limit=None, max_steps=50*10**6):
     #print(len(maze), maze)
     step = 0
     pos = 0
-    while True:
+    for i in range(max_steps):
         #print(step, pos, maze)
         try:
             jump = maze[pos]
@@ -18,11 +18,12 @@ def run(maze, offset_limit=None):
             else:
                 maze[pos] += 1
             pos += jump
-        except:
+        except IndexError:
             #print(step)
             return step
         else:
             step += 1
+    print('Max steps ({step}) exceeded'.format(step=step))
 
 def test(input, offset_limit, answer):
     test_input = input_to_int(input)
